@@ -14,6 +14,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('register',[
+    App\Http\Controllers\Api\RegisterController::class,
+    'register'
+]);
+
+Route::apiResource('v1/post', App\Http\Controllers\Api\V1\PostController::class)
+->only(['index', 'show', 'store']);
+
+Route::apiResource('v1/video', App\Http\Controllers\Api\V1\VideoController::class)
+->only(['index', 'show', 'store']);
+
+Route::post('login', [
+    App\Http\Controllers\Api\LoginController::class,
+    'login'
+]);
